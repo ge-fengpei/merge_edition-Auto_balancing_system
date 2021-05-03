@@ -1,29 +1,30 @@
 /*
-Bվ����������?_?��Bվ���������MDK����ʾ��ȫ����Ҫ�˽⣬�ڴ��ļ���word�ĵ����������ҵ���		
-֪������������							
-CSDN�������������޿���				
-���㣺����֮����
+B站：天下行走?_?（B站起的名字在MDK里显示不全，若要了解，在大文件的word文档的最后可以找到）		
+知乎：天下行走							
+CSDN：技术创造无限可能				
+闲鱼：抉择之刃银
 
-�´���QQȺ��822263013
-����Ȥ��ͬѧ���Ⱥ������
+新创建QQ群：822263013
+有兴趣的同学请加群交流。
+【2021.04.26：由于未知原因，Q群暂时无法通过群号搜索，我已向腾讯客服讲明情况，同样在焦急等待解决。各位可以加我QQ398828778（同样备注小破站），我来拉你进群。或者可能会新建第二个群，大家等一等】
 */
 
 /*
-����Ϊ ���Ƶ���Ĵ���PID���������汾��ƽ��С�����ơ�
-����Ļ�е��ֵ��0�ȣ����Ƽ�ʹ��δ�Ƶ��Ĵ���PID������������ֱ�����������Ƕ�������ϻ�е��ֵ�����ɲ����ܻ�е��ֵΪ��0�ȵ�Ӱ�졣
-��δ�Ƶ��Ĵ���PID���������ĳ�����Ҳ�����ű�����һ���ϴ���
+程序为 【推导后的串级PID控制器】版本的平衡小车控制。
+若你的机械中值非0度，则推荐使用未推导的串级PID控制器，并在直立环的期望角度那里加上机械中值，即可不再受机械中值为非0度的影响。
+【未推导的串级PID控制器】的程序我也会随着本程序一起上传。
 */
 
 #include "stm32f10x.h"
 #include "sys.h" 
 
-float Pitch,Roll,Yaw;						//�Ƕ�
-short gyrox,gyroy,gyroz;				//������--���ٶ�
-short aacx,aacy,aacz;						//���ٶ�
-int Encoder_Left,Encoder_Right;	//���������ݣ��ٶȣ�
+float Pitch,Roll,Yaw;						//角度
+short gyrox,gyroy,gyroz;				//陀螺仪--角速度
+short aacx,aacy,aacz;						//加速度
+int Encoder_Left,Encoder_Right;	//编码器数据（速度）
 
-int PWM_MAX=7200,PWM_MIN=-7200;	//PWM�޷�����
-int MOTO1,MOTO2;								//���װ�ر���
+int PWM_MAX=7200,PWM_MIN=-7200;	//PWM限幅变量
+int MOTO1,MOTO2;								//电机装载变量
 
 
 int main(void)	
